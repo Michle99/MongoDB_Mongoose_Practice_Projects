@@ -6,8 +6,6 @@ console.log("Connection string:", connectionString);
 
 mongoose.connect(connectionString);
 
-console.log("client string:", client);
-
 const db = mongoose.connection;
 
 db.on("error", (error) => {
