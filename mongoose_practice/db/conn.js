@@ -1,22 +1,23 @@
-import { MongoClient } from "mongodb";
-
+import mongoose from "mongoose";
+import '../loadEnv.js'
 
 const connectionString = process.env.ATLAS_URI || "";
 console.log("Connection string:", connectionString);
 
-const client = new MongoClient(connectionString);
+mongoose.connect(connectionString);
 
 console.log("client string:", client);
 
-let conndb;
+const db = mongoose.connection;
 
-try {
-    conndb = await client.connect();
-} catch (error) {
-    console.log("Error connecting to db:", error);
-}
+db.on("error", (error) => {
+    console.error("Error connecting to MongoDB:", error);
+});
+  
+db.once("open", () => {
+    console.log("Connected to MongoDB");
+});
 
-let db = conndb.db("sample_training");
 
 console.log("What is db:", db);
 
