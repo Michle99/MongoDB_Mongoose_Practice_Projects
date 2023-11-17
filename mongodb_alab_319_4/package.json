@@ -1,0 +1,14 @@
+{
+  "name": "mongodb_alab_319_4",
+  "version": "1.0.0",
+  "description": "ALAB 319.4.1: Aggregations, Indexes, and Validation",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Michael O",
+  "license": "ISC"
+}
