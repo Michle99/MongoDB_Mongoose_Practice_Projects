@@ -74,42 +74,5 @@ router.delete("/:id", async (req, res) => {
   else res.send(result).status(200);
 });
 
-// Get a class's grade data
-router.get("/class/:id", async (req, res) => {
-  let collection = await db.collection("grades");
-  let query = { class_id: Number(req.params.id) };
-
-  // Check for learner_id parameter
-  if (req.query.learner) query.learner_id = Number(req.query.learner);
-
-  let result = await collection.find(query).toArray();
-
-  if (!result) res.send("Not found").status(404);
-  else res.send(result).status(200);
-});
-
-// Update a class id
-router.patch("/class/:id", async (req, res) => {
-  let collection = await db.collection("grades");
-  let query = { class_id: Number(req.params.id) };
-
-  let result = await collection.updateMany(query, {
-    $set: { class_id: req.body.class_id }
-  });
-
-  if (!result) res.send("Not found").status(404);
-  else res.send(result).status(200);
-});
-
-// Delete a class
-router.delete("/class/:id", async (req, res) => {
-  let collection = await db.collection("grades");
-  let query = { class_id: Number(req.params.id) };
-
-  let result = await collection.deleteMany(query);
-
-  if (!result) res.send("Not found").status(404);
-  else res.send(result).status(200);
-});
 
 export default router;
