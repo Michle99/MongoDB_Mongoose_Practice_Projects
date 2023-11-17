@@ -7,18 +7,29 @@ const router = express.Router();
 // Create a GET route at /grades/stats
 router.get("/", async (req, res) => {
     try {
-        let collection = await db.collection("grades");
+        let collection = db.collection("grades");
         const pipeline = [
           {
             $unwind: "$scores",
           },
           {
             $group: {
-              _id: "$_id",
+              _id: null,
               totalLearners: { $sum: 1 },
               above70Avg: {
                 $sum: {
-                  $cond: [{ $gt: ["$scores.score", 70] }, 1, 0],
+                  $cond: {
+                    if: {
+                      $gt: [
+                        {
+                          $avg: "$scores.score",
+                        },
+                        70,
+                      ],
+                    },
+                    then: 1,
+                    else: 0,
+                  },
                 },
               },
             },
@@ -30,7 +41,12 @@ router.get("/", async (req, res) => {
               above70Avg: 1,
               percentageAbove70: {
                 $multiply: [
-                  { $divide: ["$above70Avg", "$totalLearners"] },
+                  { 
+                    $divide: [
+                      "$above70Avg", 
+                      "$totalLearners"
+                    ], 
+                  },
                   100,
                 ],
               },
@@ -45,12 +61,14 @@ router.get("/", async (req, res) => {
         // Log the result
         console.log("Aggregation result:", result);
         // Respond with the result
+        console.log("Single result:", result[0]);
         res.json(result[0]);
     } catch (error) {
     console.error("Error fetching stats:", error);
     res.status(500).send("Internal Server Error");
     }
 });
+
 
 // Define the GET route at /grades/stats/:id
 router.get("/:id", async (req, res) => {
@@ -101,6 +119,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 
 
