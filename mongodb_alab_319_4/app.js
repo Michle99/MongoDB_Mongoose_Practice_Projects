@@ -1,5 +1,6 @@
 import express from "express";
 import grades from "./routes/grades.js";
+import learner from "./routes/learner.js"
 
 const PORT = 4000;
 
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/grades", grades);
+app.use("/grades/learner", learner);
 
 app.use((err, _req, res, next) => {
     res.status(500).send("Seems like we messed up somewhere...");
