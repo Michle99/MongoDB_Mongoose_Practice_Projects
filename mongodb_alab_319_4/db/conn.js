@@ -6,6 +6,7 @@ const client = new MongoClient(process.env.MONGODB_URI);
 let conn;
 try {
   conn = await client.connect();
+  console.log("Connected to MongoDB!");
 } catch (e) {
   console.error(e);
 }
