@@ -4,7 +4,7 @@ import learnerRoutes from "./routes/learner.js"
 import classRoutes from "./routes/classRoutes.js";
 import statsRouter from "./routes/stats.js"
 
-const PORT = 4000;
+const PORT = 4040;
 
 const app = express();
 
