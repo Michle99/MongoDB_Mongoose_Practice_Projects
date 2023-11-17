@@ -1,22 +1,22 @@
 import mongoose from "mongoose";
 import '../loadEnv.js'
 
-const connectionString = process.env.ATLAS_URI || "";
-console.log("Connection string:", connectionString);
+// const connectionString = "mongodb+srv://nice:1n7prcx5gQHt6IcS@mongopt.auarr0p.mongodb.net/?retryWrites=true&w=majority";
+// console.log("Connection string:", connectionString);
 
-mongoose.connect(connectionString);
+const connectToDatabase = async () => {
+    try {
+      await mongoose.connect("mongodb+srv://nice:1n7prcx5gQHt6IcS@mongopt.auarr0p.mongodb.net");
+      console.log("Connected to MongoDB");
+      return mongoose.connection;
+    } catch (error) {
+      console.error("Error connecting to MongoDB:", error);
+      throw error;
+    }
+};
 
-const db = mongoose.connection;
-
-db.on("error", (error) => {
-    console.error("Error connecting to MongoDB:", error);
-});
-  
-db.once("open", () => {
-    console.log("Connected to MongoDB");
-});
+mongoose.set('debug', true);
 
 
-console.log("What is db:", db);
 
-export default db;
+export default connectToDatabase;
