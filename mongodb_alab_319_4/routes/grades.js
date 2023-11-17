@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Create a single grade entry
 router.post("/", async (req, res) => {
-  let collection = await db.collection("grades");
+  let collection = db.collection("grades");
   let newDocument = req.body;
 
   // rename fields for backwards compatibility
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
 
 // Get a single grade entry
 router.get("/:id", async (req, res) => {
-  let collection = await db.collection("grades");
+  let collection = db.collection("grades");
   let query = { _id: new ObjectId(req.params.id) };
   let result = await collection.findOne(query);
 
@@ -32,7 +32,7 @@ router.get("/:id", async (req, res) => {
 
 // Get all grades
 router.get('/', async (req, res) => {
-    let collection = await db.collection("grades");
+    let collection = db.collection("grades");
     let result = await collection.find({}).limit(5).toArray();
     console.log(result)
     res.send(result).status(200);
@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
 
 // Add a score to a grade entry
 router.patch("/:id/add", async (req, res) => {
-  let collection = await db.collection("grades");
+  let collection = db.collection("grades");
   let query = { _id: ObjectId(req.params.id) };
 
   let result = await collection.updateOne(query, {
@@ -53,7 +53,7 @@ router.patch("/:id/add", async (req, res) => {
 
 // Remove a score from a grade entry
 router.patch("/:id/remove", async (req, res) => {
-  let collection = await db.collection("grades");
+  let collection = db.collection("grades");
   let query = { _id: ObjectId(req.params.id) };
 
   let result = await collection.updateOne(query, {
@@ -66,18 +66,12 @@ router.patch("/:id/remove", async (req, res) => {
 
 // Delete a single grade entry
 router.delete("/:id", async (req, res) => {
-  let collection = await db.collection("grades");
+  let collection = db.collection("grades");
   let query = { _id: ObjectId(req.params.id) };
   let result = await collection.deleteOne(query);
 
   if (!result) res.send("Not found").status(404);
   else res.send(result).status(200);
 });
-
-
-
-
-
-
 
 export default router;

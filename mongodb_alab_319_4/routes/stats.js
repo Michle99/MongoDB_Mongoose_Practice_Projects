@@ -1,6 +1,5 @@
 import express from "express";
 import db from "../db/conn.js";
-import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
@@ -119,8 +118,5 @@ router.get("/:id", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-
-
-
 
 export default router;
