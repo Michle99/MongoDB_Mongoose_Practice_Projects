@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-
+import '../loadEnv.js';
 
 const client = new MongoClient(process.env.MONGODB_URI);
 
