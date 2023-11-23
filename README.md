@@ -1,12 +1,13 @@
-# ALAB 319.4.1: Aggregations, Indexes, and Validation
-
+<div align="center">
+    <h1>MongoDB and Mongoose Practice Projects</h1>
+</div>
 
 ## Introduction
-This assignment will ask you to expand the example REST API application that was explored during the lessons, adding additional features for aggregations, indexes, and validation.
+This repository contains practices on how to use MongoDB native driver and Mongoose packages to connect and access data on MongoDB Database collections.
 
-## Objectives
-- Add additional features to an existing MongoDB + Express CRUD API.
-- Refactor existing code for efficiency, organization, and/or performance.
+## Getting Started
+Clone this repo and use the command to install the dependencies:
 
-
-## 
+```
+npm i
+```
