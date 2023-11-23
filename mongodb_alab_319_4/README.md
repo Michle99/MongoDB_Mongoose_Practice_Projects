@@ -8,5 +8,3 @@ This assignment will ask you to expand the example REST API application that was
 - Add additional features to an existing MongoDB + Express CRUD API.
 - Refactor existing code for efficiency, organization, and/or performance.
 
-
-## 
