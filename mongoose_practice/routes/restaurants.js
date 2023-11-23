@@ -7,7 +7,7 @@ const router = express.Router();
 // GET all restaurants
 router.get('/', async (req, res) => {
     try {
-        const restaurants = await Restaurant.find();
+        const restaurants = await Restaurant.findOne({});
         res.status(200).json(restaurants);
     } catch (error) {
         console.error("Error fetching restaurants:", error);

@@ -6,7 +6,13 @@ import '../loadEnv.js'
 
 const connectToDatabase = async () => {
     try {
-      await mongoose.connect("mongodb+srv://nice:1n7prcx5gQHt6IcS@mongopt.auarr0p.mongodb.net");
+      await mongoose.connect("mongodb+srv://nice:1n7prcx5gQHt6IcS@mongopt.auarr0p.mongodb.net",
+      /**
+       * Gotta add "dbName" to specifically connect to the specific collection
+       * or else it wont connect to the collections u want in MongoDB 
+       */
+       
+      { dbName: "sample_restaurants"}); 
       console.log("Connected to MongoDB");
       return mongoose.connection;
     } catch (error) {

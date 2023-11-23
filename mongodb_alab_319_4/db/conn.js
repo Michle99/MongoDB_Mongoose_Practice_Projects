@@ -78,7 +78,6 @@ try {
     validator: validationRules,
     validationAction: "warn",
   });
-
   console.log("Validation rules applied successfully.");
 } catch (error) {
   console.error("Error applying validation rules:", error);
